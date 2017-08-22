@@ -33,9 +33,16 @@ float SHT21::getHumidity(void)
 	return (-6.0 + 125.0 / 65536.0 * (float)(readSHT21(TRIGGER_HUMD_MEASURE_NOHOLD)));
 }
 
-float SHT21::getTemperature(void)
+float SHT21::getTemperature(char sFlag)
 {
-	return (-46.85 + 175.72 / 65536.0 * (float)(readSHT21(TRIGGER_TEMP_MEASURE_NOHOLD)));
+	if (sFlag == 'F') // Fahrenheit 
+	{
+	  return ((((-46.85 + 175.72 / 65536.0 * (float)(readSHT21(TRIGGER_TEMP_MEASURE_NOHOLD))) * 9) / 5) + 32);	
+	}
+	else // celsius (default)
+	{
+	  return (-46.85 + 175.72 / 65536.0 * (float)(readSHT21(TRIGGER_TEMP_MEASURE_NOHOLD)));	
+	}
 }
 
 uint16_t SHT21::readSHT21(uint8_t command)
