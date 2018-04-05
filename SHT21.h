@@ -34,7 +34,7 @@ public:
 	
   void begin();
   float getHumidity(void);
-  float getTemperature(void);
+  float getTemperature(char);
   	
 private:
   
